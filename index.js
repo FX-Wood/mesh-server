@@ -28,9 +28,9 @@ app.get('/mesh', async (req, res) => {
 })
 
 app.post('/cluster', async (req, res) => {
-    const meshId = body.meshId
-    const liked = body.liked
     try {
+        const meshId = req.body.meshId
+        const liked = req.body.liked
         const update = await updateReward(meshId, liked)
     } catch(err) {
         console.error(err)
