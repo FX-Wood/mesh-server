@@ -19,6 +19,12 @@ model User {
 model Mesh {
   id            Int     @id @default(autoincrement())
   data          Json
+  p0            Float
+  p1            Float
+  p2            Float
+  p3            Float
+  p4            Float
+  p5            Float
   cluster       Cluster @relation(fields: [clusterId], references: [id])
   clusterId     Int
 }

@@ -20,9 +20,14 @@ app.get('/', (req, res) => {
 app.get('/mesh', async (req, res) => {
     try {
         const nextMesh = await chooseNextMesh()
-        res.json(nextMesh)
-    } catch {
-        console.error()
+        const hydratedMesh = await prisma.mesh.findFirst({
+            where: {
+                id: nextMesh
+            }
+        })
+        res.json(hydratedMesh)
+    } catch(err) {
+        console.error(err)
     }
 
 })
