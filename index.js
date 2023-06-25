@@ -32,7 +32,7 @@ app.post('/cluster', async (req, res) => {
         const meshId = req.body.meshId
         const liked = req.body.liked
         const update = await updateReward(meshId, liked)
-        res.status(200)
+        res.status(200).send('yay')
     } catch(err) {
         console.error(err)
     }
