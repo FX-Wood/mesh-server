@@ -1,0 +1,15 @@
+{
+  "name": "mesh-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/fx-wood/mesh-server",
+  "author": "FX Wood <fxwood2@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
