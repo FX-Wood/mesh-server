@@ -3,7 +3,7 @@ const express = require('express')
 const { PrismaClient } = require('@prisma/client')
 const cors = require('cors')
 const app = express()
-const port = 3000
+const port = process.env.port || 3000
 
 dotenv.config()
 
@@ -14,7 +14,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.send('Mesh Server')
 })
 
 app.get('/mesh', async (req, res) => {
@@ -37,5 +37,5 @@ app.post('/cluster', async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`mesh-server listening on ${port}`)
 })
