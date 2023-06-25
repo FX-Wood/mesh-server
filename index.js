@@ -20,10 +20,11 @@ app.get('/', (req, res) => {
 app.get('/mesh', async (req, res) => {
     try {
         const nextMesh = await chooseNextMesh()
+        res.json(nextMesh)
     } catch {
         console.error()
     }
-    res.json(nextMesh)
+
 })
 
 app.post('/cluster', async (req, res) => {
