@@ -32,6 +32,15 @@ app.get('/mesh', async (req, res) => {
 
 })
 
+app.get('/cluster', async (req, res) => {
+    try {
+        const clusters = await prisma.cluster.findMany()
+        res.json(clusters)
+    } catch(err) {
+        console.error(err)
+    }
+})
+
 app.post('/cluster', async (req, res) => {
     try {
         const meshId = req.body.meshId
