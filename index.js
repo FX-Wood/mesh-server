@@ -43,6 +43,7 @@ app.get('/cluster', async (req, res) => {
 
 app.post('/cluster', async (req, res) => {
     try {
+        console.log('req body', req.body)
         const meshId = req.body.meshId
         const liked = req.body.liked
         const update = await updateReward(meshId, liked)
