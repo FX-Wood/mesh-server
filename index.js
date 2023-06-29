@@ -8,8 +8,15 @@ const port = process.env.PORT || 3000
 dotenv.config()
 
 const { chooseNextMesh, updateReward } = require('./lib/rewardLoop.js')
+const logger = require('./lib/logger.js')
 
 const prisma = new PrismaClient()
+
+// see lib/logger.js
+app.use((req, res, next) => {
+    logger.log('info', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', additionalInfo: {body: req.body, headers: req.headers }});
+    next()      
+})
 app.use(cors())
 app.use(express.json())
 
@@ -54,5 +61,5 @@ app.post('/cluster', async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`mesh-server listening on ${port}`)
+  logger.log('info',`mesh-server listening on ${port}`)
 })
