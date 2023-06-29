@@ -1,9 +1,9 @@
-import { PrismaClient } from '@prisma/client';
-import * as csv from 'csv-parse'
-import fs from 'fs';
+const { PrismaClient } = require('@prisma/client');
+const csv = require('csv-parse')
+const fs = require('fs')
 
 const javascriptData = []
-const buf = fs.createReadStream('./data/final_df_test_mesh_data.csv')
+fs.createReadStream('./data/final_df_test_mesh_data.csv')
         .pipe(csv.parse({ delimiter: ',', from_line: 2}))
         .on("data", function (row) {
             const mesh = {
@@ -40,4 +40,4 @@ setTimeout(async () => {
             }
 
     }
-}, 2000)
+}, 10 * 1000)

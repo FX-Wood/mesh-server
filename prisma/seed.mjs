@@ -1,13 +1,12 @@
-import { PrismaClient } from '@prisma/client';
-import * as csv from 'csv-parse'
-import fs from 'fs'
+const { PrismaClient } = require('@prisma/client');
+const csv = require('csv-parse')
+const fs = require('fs')
 
 if (process.env.SEED_MODE !== 'seed') {
-    const csv_data = []
     const javascriptData = []
     
     const prisma = new PrismaClient()
-    const buf = fs.createReadStream('./data/cluster_df_test_cluster_data.csv')
+    fs.createReadStream('./data/cluster_df_test_cluster_data.csv')
         .pipe(csv.parse({ delimiter: ',', from_line: 2}))
         .on("data", function (row) {
                 const clusterId = Number(row[0])
@@ -27,10 +26,9 @@ if (process.env.SEED_MODE !== 'seed') {
         for (let cluster of javascriptData) {
             count++
             const meshIds = cluster.meshes
-            const id = cluster.id
             const meshes = meshIds.map(id => ({
                 id,
-                data: JSON.stringify({ 'model': 'asdfasdfasdfasdfasdfasdfasdf' }),
+                data: JSON.stringify({ 'model': 'models are in static' }),
                 p0: 0,
                 p1: 0,
                 p2: 0,
@@ -49,5 +47,5 @@ if (process.env.SEED_MODE !== 'seed') {
             console.log(res)
             console.log(count, 'count')
         }
-    }, 2000)    
+    }, 10 * 1000)    
 }
