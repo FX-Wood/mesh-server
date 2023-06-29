@@ -32,8 +32,6 @@ app.get('/mesh', async (req, res, next) => {
         const nextMesh = await chooseNextMesh()
         res.json(nextMesh)
     } catch (err) {
-        console.log("i'm in the mesh catch block")
-        console.error(err.message)
         next(err)
     }
 
@@ -58,6 +56,11 @@ app.post('/cluster', async (req, res, next) => {
         next(err)
     }
 })
+
+// catch all routes
+app.all('*', (req, res) => {
+    res.status(404).send('endpoint not found')
+  })
 
 // need all four parameters for express to detect
 // an error handler
