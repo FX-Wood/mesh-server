@@ -70,7 +70,6 @@ app.all('*', (req, res) => {
 // an error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-    console.log(err)
     const logData = {
         body: req.body,
         headers: req.headers,
@@ -78,7 +77,7 @@ app.use((err, req, res, next) => {
         stack: err.stack,
     }
     logger.log('error', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', ...logData})
-    res.status(500).end()
+    res.status(500).send("there was an error")
 })
 
 app.listen(port, () => {
