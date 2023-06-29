@@ -1,3 +1,4 @@
 node_modules
-prisma/data
+prisma/data/*.json
 .env*
+.DS_STORE
