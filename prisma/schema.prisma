@@ -18,7 +18,7 @@ model User {
 
 model Mesh {
   id            Int     @id @default(autoincrement())
-  data          Json
+  data          String
   p0            Float
   p1            Float
   p2            Float
