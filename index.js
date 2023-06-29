@@ -30,7 +30,11 @@ app.get('/', (req, res) => {
 app.get('/mesh', async (req, res, next) => {
     try {
         const nextMesh = await chooseNextMesh()
-        res.json(nextMesh)
+        if (nextMesh) {
+            res.json(nextMesh)
+        } else {
+            throw "there was an error"
+        }
     } catch (err) {
         next(err)
     }
