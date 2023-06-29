@@ -8,7 +8,6 @@ fs.createReadStream('./data/final_df_test_mesh_data.csv')
         .on("data", function (row) {
             const mesh = {
                 id: JSON.parse(row[0]),
-                data: "dummy data",
                 p0: JSON.parse(row[1]),
                 p1: JSON.parse(row[2]),
                 p2: JSON.parse(row[3]),

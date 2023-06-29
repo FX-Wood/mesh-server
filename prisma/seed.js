@@ -28,7 +28,7 @@ if (process.env.SEED_MODE !== 'seed') {
             const meshIds = cluster.meshes
             const meshes = meshIds.map(id => ({
                 id,
-                data: JSON.stringify({ 'model': 'models are in static' }),
+                data: `mesh/${id}.obj`,
                 p0: 0,
                 p1: 0,
                 p2: 0,
