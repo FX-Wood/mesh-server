@@ -12,52 +12,54 @@ const logger = require('./lib/logger.js')
 
 const prisma = new PrismaClient()
 
-// see lib/logger.js
 app.use((req, res, next) => {
-    logger.log('info', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', additionalInfo: {body: req.body, headers: req.headers }});
+    const additionalInfo = {
+        body: req.body,
+        headers: req.headers
+    }
+    logger.log('info', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', additionalInfo});
     next()      
 })
 app.use(cors())
 app.use(express.json())
+// need all four parameters for express to detect
+// an error handler
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+    const additionalInfo = {
+        body: req.body,
+        headers: req.headers,
+        error: err.message,
+        stack: err.stack,
+    }
+    logger.log('error', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', additionalInfo})
+    res.status(500).end()
+})
 
 app.get('/', (req, res) => {
   res.send('Mesh Server')
 })
 
 app.get('/mesh', async (req, res) => {
-    try {
-        const nextMesh = await chooseNextMesh()
-        const hydratedMesh = await prisma.mesh.findFirst({
-            where: {
-                id: nextMesh
-            }
-        })
-        res.json(hydratedMesh)
-    } catch(err) {
-        console.error(err)
-    }
-
+    const nextMesh = await chooseNextMesh()
+    const hydratedMesh = await prisma.mesh.findFirst({
+        where: {
+            id: nextMesh
+        }
+    })
+    res.json(hydratedMesh)
 })
 
 app.get('/cluster', async (req, res) => {
-    try {
-        const clusters = await prisma.cluster.findMany()
-        res.json(clusters)
-    } catch(err) {
-        console.error(err)
-    }
+    const clusters = await prisma.cluster.findMany()
+    res.json(clusters)
 })
 
 app.post('/cluster', async (req, res) => {
-    try {
-        console.log('req body', req.body)
-        const meshId = req.body.meshId
-        const liked = req.body.liked
-        const update = await updateReward(meshId, liked)
-        res.status(200).send('yay')
-    } catch(err) {
-        console.error(err)
-    }
+    const meshId = req.body.meshId
+    const liked = req.body.liked
+    await updateReward(meshId, liked)
+    res.status(200).send('yay')
 })
 
 app.listen(port, () => {
