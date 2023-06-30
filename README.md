@@ -1,4 +1,11 @@
-# mesh-server
+# likeable mesh-server
+AEC Seattle Hackathon 2023!
+
+Please see the main repository here:
+
+https://github.com/wheninseattle/likeable
+
+## About
 This proxy server was necessary because I was struggling to use the prisma 
 client with next 13's app directory and automagic server/client side rendering.
 I blame the sleep deprivation!
