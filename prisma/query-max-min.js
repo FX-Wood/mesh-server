@@ -1,3 +1,4 @@
+(async () => {
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
@@ -35,3 +36,4 @@ for (let cluster of lowest) {
 console.log('highest', highest.map(c => ({ id: c.id, rewardValue: c.rewardValue })))
 //console.log('lowest', lowest.slice(0,3))
 console.log('nonzero', nonZeroCount, 'total', total)
+})()
