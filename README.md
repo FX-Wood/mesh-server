@@ -14,7 +14,7 @@ It is a simple expressjs server that incorporates prisma and the prisma client.
 
 ## Getting started
 1. `git clone https://github.com/fx-wood/mesh-server`
-2. `cd mesh-server && yarn install`
+2. `cd mesh-server && npm install`
 
 ### Set up postgres
 Set up a postgres instance somewhere, locally or in the cloud. Note that if you change
@@ -35,5 +35,5 @@ and put it in .env file:
 
 ### Run server!
 0. `cd ..` (go back to root of project if you haven't already)
-1. `yarn run start`
+1. `npm run start`
 2. `curl localhost:3000`
