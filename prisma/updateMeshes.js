@@ -2,8 +2,11 @@ const { PrismaClient } = require('@prisma/client');
 const csv = require('csv-parse')
 const fs = require('fs')
 
+const MESH_2K_PATH = './data/2k-option-dataset/final_df_test.csv'
+const MESH_100_PATH = './data/100-option-dataset/final_df_test_mesh_data.csv'
+
 const javascriptData = []
-fs.createReadStream('./data/100-option-dataset/final_df_test_mesh_data.csv')
+fs.createReadStream(MESH_2K_PATH)
         .pipe(csv.parse({ delimiter: ',', from_line: 2}))
         .on("data", function (row) {
             const mesh = {
@@ -19,7 +22,8 @@ fs.createReadStream('./data/100-option-dataset/final_df_test_mesh_data.csv')
         })
 
 setTimeout(async () => {
-    fs.writeFileSync('./data/cluster-df-test-mesh.json', JSON.stringify(javascriptData, undefined, 2))
+    // fs.writeFileSync('./data/cluster-df-test-mesh.json', JSON.stringify(javascriptData, undefined, 2))
+    console.log(javascriptData.length, 'length')
     const prisma = new PrismaClient()
 
         for (let mesh of javascriptData) {
@@ -39,4 +43,4 @@ setTimeout(async () => {
             }
 
     }
-}, 10 * 1000)
+}, 2 * 1000)

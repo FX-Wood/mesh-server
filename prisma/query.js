@@ -3,8 +3,14 @@ const prisma = new PrismaClient()
 
 
 const main = async () => {
-    const meshes = await prisma.mesh.findMany()
-    console.log(meshes[0])
+    // const mesh = await prisma.mesh.findFirst({
+    //     where: {
+    //         id: 1999
+    //     }
+    // })
+    // console.log(mesh)
+    const clusters = await prisma.cluster.findMany()
+    console.log(clusters)
 }
 
 main()
