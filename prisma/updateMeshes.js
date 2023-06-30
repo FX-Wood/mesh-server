@@ -3,7 +3,7 @@ const csv = require('csv-parse')
 const fs = require('fs')
 
 const javascriptData = []
-fs.createReadStream('./data/final_df_test_mesh_data.csv')
+fs.createReadStream('./data/100-option-dataset/final_df_test_mesh_data.csv')
         .pipe(csv.parse({ delimiter: ',', from_line: 2}))
         .on("data", function (row) {
             const mesh = {

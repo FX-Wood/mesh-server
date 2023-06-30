@@ -6,7 +6,7 @@ if (process.env.SEED_MODE !== 'seed') {
     const javascriptData = []
     
     const prisma = new PrismaClient()
-    fs.createReadStream('./data/cluster_df_test_cluster_data.csv')
+    fs.createReadStream('./data/100-option-dataset/cluster_df_test_cluster_data.csv')
         .pipe(csv.parse({ delimiter: ',', from_line: 2}))
         .on("data", function (row) {
                 const clusterId = Number(row[0])
