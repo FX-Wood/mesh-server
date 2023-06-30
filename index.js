@@ -17,7 +17,7 @@ app.use((req, res, next) => {
         body: req.body,
         headers: req.headers
     }
-    logger.log('info', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', ...logData});
+    logger.log('info', `Requesting ${req.method} ${req.originalUrl}`, { tags: 'http', data: logData });
     next()      
 })
 app.use(cors())
@@ -76,7 +76,7 @@ app.use((err, req, res, next) => {
         error: err.message,
         stack: err.stack,
     }
-    logger.log('error', `Requesting ${req.method} ${req.originalUrl}`, {tags: 'http', ...logData})
+    logger.log('error', `Requesting ${req.method} ${req.originalUrl}`, { tags: 'http', data: logData })
     res.status(500).send("there was an error")
 })
 
