@@ -2,3 +2,4 @@ node_modules
 prisma/data/*.json
 .env*
 .DS_STORE
+.vercel

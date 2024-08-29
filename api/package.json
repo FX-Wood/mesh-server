@@ -5,7 +5,9 @@
   "repository": "https://github.com/fx-wood/mesh-server",
   "author": "FX Wood <fxwood2@gmail.com>",
   "license": "MIT",
+  "main": "index.js",
   "scripts": {
+    "postinstall": "npx prisma generate",
     "start": "node index.js",
     "lint": "yarn run eslint index.js lib/*.js"
   },
